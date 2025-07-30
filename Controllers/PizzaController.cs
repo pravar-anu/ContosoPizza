@@ -46,4 +46,21 @@ public class PizzaController : ControllerBase
 
     }
 
+
+    [HttpPut("{id}")]
+    public IActionResult Update(int id, Pizza pizza)
+    {
+        PizzaService.Update(pizza);
+
+        return CreatedAtAction(nameof(Get), new { id = pizza.Id }, pizza);
+    }
+
+    [HttpDelete("{id}")]
+    public IActionResult Delete(int id)
+    {
+        PizzaService.Delete(id);
+
+        return Ok("Pizza Deleted Successfully");
+    }
+
 }
